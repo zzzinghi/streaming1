@@ -1,0 +1,3 @@
+rootProject.name = 'streaming3'
+include 'user-api'
+include 'video-api'

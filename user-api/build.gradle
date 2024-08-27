@@ -1,0 +1,48 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.2'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.sparta'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+bootJar {
+	enabled = true
+}
+jar {
+	enabled = true
+}
+
+dependencies {
+	//user-api 모듈이 api를 제공하고 이를 api gateway를 통해 외부에 노출하기 위해서는 아래와 같은 의존성 필수
+	//spring Mvc 기반의 동기식 웹 애플리케이션
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//비동기식 및 반응형 웹 애플리케이션
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+// prepareKotlinBuildScriptModel 오류 방지
+tasks.register("prepareKotlinBuildScriptModel") {}
+
+bootJar {
+	mainClass = 'com.sparta.userapi.UserApiApplication'  // UserApiApplication을 mainClass로 지정
+}
