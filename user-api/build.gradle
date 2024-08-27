@@ -44,5 +44,5 @@ tasks.named('test') {
 tasks.register("prepareKotlinBuildScriptModel") {}
 
 bootJar {
-	mainClass = 'com.sparta.userapi.UserApiApplication'  // UserApiApplication을 mainClass로 지정
+	mainClass = 'com.sparta.user-api.UserApiApplication'  // UserApiApplication을 mainClass로 지정
 }
