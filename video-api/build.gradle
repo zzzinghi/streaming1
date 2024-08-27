@@ -44,5 +44,5 @@ tasks.named('test') {
 tasks.register("prepareKotlinBuildScriptModel") {}
 
 bootJar {
-	mainClass = 'com.sparta.videoapi.VideoApiApplication'  // VideoApiApplication을 mainClass로 지정
+	mainClass = 'com.sparta.video-api.VideoApiApplication'  // VideoApiApplication을 mainClass로 지정
 }
