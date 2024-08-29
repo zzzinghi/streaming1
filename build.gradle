@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.2' apply false //루트 프로젝트에 적용하지 않음 -> 각 모듈별로 bootjat mainclass 지정
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'io.spring.dependency-management' version '1.1.6' apply false
 }
 
 allprojects {
@@ -12,6 +12,7 @@ allprojects {
         mavenCentral()
     }
 }
+
 
 subprojects {
     apply plugin: 'java'
@@ -26,34 +27,40 @@ subprojects {
 
 
     //initSourceFolders : sub 모듈 별로 기초 디렉터리가 존재하지 않으면, 자동 생성해주도록 설정
-    task initSourceFolders {
-        sourceSets*.java.srcDirs*.each {
-            if (!it.exists()) {
-                it.mkdirs()
-            }
-        }
-
-        sourceSets*.resources.srcDirs*.each {
-            if (!it.exists()) {
-                it.mkdirs()
-            }
-        }
-    }
+//    task initSourceFolders {
+//        sourceSets*.java.srcDirs*.each {
+//            if (!it.exists()) {
+//                it.mkdirs()
+//            }
+//        }
+//
+//        sourceSets*.resources.srcDirs*.each {
+//            if (!it.exists()) {
+//                it.mkdirs()
+//            }
+//        }
+//    }
 
     dependencies {
+        // JWT
+        compileOnly group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+        runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+        runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
 
+        //mysql jdbc driver 추가 - spring boot가 기본적으로 제공하는 의존성은 버전을 명시하지 않아도 되지만, 외부 라이브러리 경우 기본 버전을 제공하지 않기 때문에, 버전을 명시해야 함
+        implementation 'mysql:mysql-connector-java:8.0.33'
         //dev
         implementation 'org.springframework.boot:spring-boot-devtools'
-
         //spring
         implementation 'org.springframework.boot:spring-boot-starter'
+        //junit 추가
+        testImplementation 'junit:junit'
+        //spring
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
         //lombok
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
-
         //test
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -62,4 +69,6 @@ subprojects {
     tasks.named('test') {
         useJUnitPlatform()
     }
+    // prepareKotlinBuildScriptModel 오류 방지
+    tasks.register("prepareKotlinBuildScriptModel") {}
 }

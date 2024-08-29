@@ -1,3 +1,4 @@
 rootProject.name = 'streaming3'
-include 'user-api'
-include 'video-api'
+include 'user_api'
+include 'video_api'
+include 'apigateway'

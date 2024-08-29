@@ -1,0 +1,24 @@
+
+
+services:
+  user_api:
+    build:
+      context: ./user_api
+      dockerfile: Dockerfile
+    image: user_api_image
+    container_name: user_api-container
+    ports:
+      - "6071:6071"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+
+  video_api:
+    build:
+      context: ./video_api
+      dockerfile: Dockerfile
+    image: video_api_image
+    container_name: video_api-container
+    ports:
+      - "6072:6072"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
