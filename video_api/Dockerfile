@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=build /app/build/libs/video_api-0.0.1-SNAPSHOT.jar video_api.jar
 
 # 애플리케이션 실행 명령
-ENTRYPOINT ["java", "-jar", "user_api.jar"]
+ENTRYPOINT ["java", "-jar", "video_api.jar"]
 
 # (선택 사항) 포트 노출
 EXPOSE 6072

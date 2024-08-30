@@ -48,7 +48,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-
+bootJar {
+	mainClass.set('com.sparta.videoApplication') // 여기에 실제 메인 클래스의 경로를 지정}
+}
 //bootJar {
 //	mainClass = 'com.sparta.video-api.VideoApiApplication'  // VideoApiApplication을 mainClass로 지정
 //}
