@@ -27,7 +27,10 @@ public class JwtUtil {  //다른 객체에 의존하지 않고, 하나의 모듈
     // 사용자 권한 값의 KEY
     public static final String AUTHORIZATION_KEY = "auth";
     // Token 식별자
-    public static final String BEARER_PREFIX = "Bearer "; //값 앞에 붙어있으면 해당하는 값의 토큰'이라는 규칙
+    public static final String BEARER_PREFIX = "Bearer ";
+    /*값 앞에 붙어있으면 해당하는 값의 토큰'이라는 규칙,
+    그리고 Bearer  -> 다음에 한 칸 띄움, 왜냐 bearer 다음 한 칸 띄우고, 토큰 값을 줘서 , 구별!! */
+
     // 토큰 만료시간
     private final long TOKEN_TIME = 60 * 60 * 1000L; // 60분
 
@@ -44,8 +47,6 @@ public class JwtUtil {  //다른 객체에 의존하지 않고, 하나의 모듈
         byte[] bytes = Base64.getDecoder().decode(secretKey);
         key = Keys.hmacShaKeyFor(bytes);
     }
-
-
 
     //jwt 생성 = 토큰 생성
 /*
