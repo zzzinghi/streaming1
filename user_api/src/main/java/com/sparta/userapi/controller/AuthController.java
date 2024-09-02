@@ -27,7 +27,6 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
     }
 
-
     @GetMapping("/create-cookie")
     public String createCookie(HttpServletResponse res) {       //쿠키를 만드는 메서드
         addCookie("Robbie Auth", res);      //저장할 cookievalue? //띄어쓰기=공백이 있으면 쿠키에서 저장할 수 없다고 오류가 남
@@ -46,7 +45,9 @@ public class AuthController {
         System.out.println("value = " + value);
 
         return "getCookie : " + value;
+
     }
+
     @GetMapping("/create-session")
     public String createSession(HttpServletRequest req) {
         // 세션이 존재할 경우 세션 반환, 없을 경우 새로운 세션을 생성한 후 반환
@@ -68,6 +69,7 @@ public class AuthController {
 
         return "getSession : " + value;
     }
+
     @GetMapping("/create-jwt")
     public String createJwt(HttpServletResponse res) {
         // Jwt 생성
@@ -117,6 +119,7 @@ public class AuthController {
         }
     }
 }
+
 //HttpServletResponse // 서블릿에서 만들어준 Response 객체에 어떤 데이터를 담으면, 클라이언트로 자연스럽게 반환이 됨.
 //우리가 만든 쿠키를 Reponse 객체에 담아야 됨.. , 근데 addCookie 라는 게 이미 존재한다.(쿠키를 만들 공간이 이미 만들어져 있음)
 //HttpServletResponse res -> res! // res.addCookie 해서 거기에 우리가 만든 쿠키를 넣어주면 됨 (cookie) -> 그러면 쿠키가 잘 담김.
