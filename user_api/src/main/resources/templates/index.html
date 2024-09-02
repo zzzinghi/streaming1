@@ -19,15 +19,15 @@
         <div id="header-title-login-user">
             <span th:text="${username}"></span> 님의
         </div>
-        <div id="header-title-select-shop">
+        <div id="header-title-select-shop-logged-in">
             Select Shop
         </div>
-        <a id="login-text" href="javascript:logout()">
+        <a id="logout-text" href="javascript:logout()">
             로그아웃
         </a>
     </div>
     <div id="login-false" >
-        <div id="header-title-select-shop">
+        <div id="header-title-select-shop-logged-out">
             My Select Shop
         </div>
         <a id="sign-text" href="/api/user/signup">

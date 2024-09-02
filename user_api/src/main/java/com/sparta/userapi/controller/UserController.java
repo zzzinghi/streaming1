@@ -30,11 +30,11 @@ public class UserController {
         return "signup";
     }
 
-    @PostMapping("/user/singup")
-    public String singup(SignupRequestDto requestDto) {
+    @PostMapping("/user/signup")
+    public String signup(SignupRequestDto requestDto) {
        userService.signup(requestDto);
 
-       return "redirect:/user/login-page";
+       return "redirect:/api/user/login-page";
     }
 
     @PostMapping("/user/login")
@@ -42,10 +42,9 @@ public class UserController {
         try {
             userService.login(loginRequestDto, res);
         } catch (Exception e) {
-            return "redirect:/user/login-page?error";
+            return "redirect:api/user/login-page?error";
         }
 
         return "redirect:/";        //redirect! / (슬래시)는 main으로!
     }
-
 }
