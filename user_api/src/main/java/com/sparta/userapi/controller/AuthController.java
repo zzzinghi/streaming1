@@ -33,19 +33,19 @@ public class AuthController {
 
         return "createCookie";
     }
-
+/*
+       HttpServletRequest에 들어있는 쿠키 중에서 Authorization이라는 이름으로 된 쿠키를
+         @CookieValue(AUTHORIZATION_HEADER)이 애노테이션을 통해서 가지고 온다!
+        @CookieValue 에 우리가 가지고 오고 싶은 (AUTHORIZATION_HEADER) 그 쿠키의 이름을 넣으면
+        String value 이 변수에 해당하는 그 쿠키의 값이 들어감 -> 예상값 "Robbie Auth"
+        Robbie Auth를  cookieValue쪽에 넣었으니깐! 그러면 (@CookieValue(AUTHORIZATION_HEADER) String value)
+        이걸 통해서 value에 해당하는 Robbie Auth 이 값이 들어와야함
+* */
     @GetMapping("/get-cookie")
     public String getCookie(@CookieValue(AUTHORIZATION_HEADER) String value) {
-        // HttpServletRequest에 들어있는 쿠키 중에서 Authorization이라는 이름으로 된 쿠키를
-        // @CookieValue(AUTHORIZATION_HEADER)이 애노테이션을 통해서 가지고 온다!
-        //@CookieValue 에 우리가 가지고 오고 싶은 (AUTHORIZATION_HEADER) 그 쿠키의 이름을 넣으면
-        //String value 이 변수에 해당하는 그 쿠키의 값이 들어감 -> 예상값 "Robbie Auth"
-        //Robbie Auth를  cookieValue쪽에 넣었으니깐! 그러면 (@CookieValue(AUTHORIZATION_HEADER) String value)
-        //이걸 통해서 value에 해당하는 Robbie Auth 이 값이 들어와야함
         System.out.println("value = " + value);
 
         return "getCookie : " + value;
-
     }
 
     @GetMapping("/create-session")

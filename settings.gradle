@@ -1,4 +1,3 @@
 rootProject.name = 'streaming3'
 include 'user_api'
 include 'video_api'
-include 'apigateway'
