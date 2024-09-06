@@ -32,6 +32,8 @@ bootJar {
 //}
 
 dependencies {
+
+	implementation project(':user_api')
 	//user-api 모듈이 api를 제공하고 이를 api gateway를 통해 외부에 노출하기 위해서는 아래와 같은 의존성 필수
 	//spring Mvc 기반의 동기식 웹 애플리케이션
 	implementation 'org.springframework.boot:spring-boot-starter-web'

@@ -1,2 +1,2 @@
 rootProject.name = 'streaming3'
-include 'video_api'
+include ':user_api', ':video_api'
