@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 
@@ -14,7 +13,6 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Entity
 @Table(name = "video_history")
-@Component
 public class VideoHistory {
 
     @Id
@@ -30,7 +28,7 @@ public class VideoHistory {
     private User user;      //사용자와의 관게
 
     @Column(nullable = false)
-    private Timestamp lastPlayTime;     // 마지막 재생된 시간
+    private Timestamp lastPlayTime;     // 마지막 재생된 시간   //  Timestamp (-)
 
     @Column(nullable = false)
     private Long currentPosition;    // 마지막 재생 위치

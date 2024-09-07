@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"com.sparta.userapi.entity", "com.sparta.videoapi.controller.entity"})
+@EntityScan(basePackages = {"com.sparta.userapi.entity", "com.sparta.videoapi.entity"})
 public class UserApiApplication {
 
 	public static void main(String[] args) {

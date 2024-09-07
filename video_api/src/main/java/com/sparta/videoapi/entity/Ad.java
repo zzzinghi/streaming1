@@ -20,6 +20,8 @@ public class Ad {
 
     private int adPlayCount = 0;    //광고 재생 횟수
 
+    private int playPosition;
+
     // 광고 재생 횟수 증가 메서드
     public void incrementPlayCount() {
         this.adPlayCount += 1;
