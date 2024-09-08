@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Table(name = "video")
 public class Video {
 
@@ -32,12 +32,16 @@ public class Video {
     private int playCount = 0; //재생 횟수
 
     //조회수 증가 메서드
-    public void incrementViews() {
-        this.views += 1;
-    }
+    public void incrementViews() { this.views += 1; }
 
     //재생 횟수 증가 메서드
     public void incrementPlayTime() {
         this.playCount += 1;
+    }
+
+    //생성자 추가
+    public Video(String title, User user) {
+        this.title = title;
+        this.user = user;
     }
 }
