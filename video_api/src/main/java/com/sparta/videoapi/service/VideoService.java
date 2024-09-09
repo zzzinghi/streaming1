@@ -2,9 +2,7 @@ package com.sparta.videoapi.service;
 
 import com.sparta.userapi.entity.User;
 import com.sparta.userapi.repository.UserRepository;
-import com.sparta.videoapi.dto.video.PlaybackResponse;
-import com.sparta.videoapi.dto.video.RegisterRequestDto;
-import com.sparta.videoapi.dto.video.RegisterResponseDto;
+import com.sparta.videoapi.dto.video.*;
 import com.sparta.videoapi.entity.Video;
 import com.sparta.videoapi.entity.VideoHistory;
 import com.sparta.videoapi.repository.VideoHistoryRepository;
@@ -61,14 +59,14 @@ public class VideoService {
     }
 
     //비디오 재생 로직
-    public PlaybackResponse playVideo(Long videoId, Long userId) {
+    public ResponseEntity<PlayResponseDto> playVideo(PlayRequestDto playRequestDto) {
         // 비디오 조회
-        Video video = videoRepository.findById(videoId)
+        Video video = videoRepository.findById(playRequestDto.getVideoId())
                 .orElseThrow(() -> new RuntimeException("Video not found"));
         /* 앤티티랑 연결 된 videoRepository에서 findById로 videoId를 찾아서 video 객체를 만들어줌. 그리고 못 찾을 시 예외 발생 시킴 */
 
         //사용자 진행 기록 조회
-        Optional<VideoHistory> videoHistoryOpt = videoHistoryRepository.findByUserIdAndVideoId(userId, videoId);
+        Optional<VideoHistory> videoHistoryOpt = videoHistoryRepository.findByUserIdAndVideoId(playRequestDto.getUserId(), playRequestDto.getVideoId());
         /*엔티티랑 연결 돼 있는 videoHistoryRepository에서  findByUserIdAndVideoId(?)를 만들어서 userId랑 videoId를 찾아서 videoHistoryOpt 객체에 넣어줌 */
 
         //조회수 및 재생 횟수 증가
@@ -82,24 +80,37 @@ public class VideoService {
         //광고 체크 및 시청 카운트 증가
 //        adService.checkAndCountAdViews(videoId, currentPosition); //광고 재생 체크 로직 추가
 
+        PlayResponseDto playResponseDto = new PlayResponseDto(video.getId(), currentPosition, video.getPlayCount());
+
         //재생 응답 반환
-        return new PlaybackResponse(videoId, currentPosition, video.getPlayCount());
+        return ResponseEntity.ok(playResponseDto);
     }
 
     //비디오 중단 시 재생 위치 저장
-    public void saveCurrentPosition(Long userId, Long videoId, Long currentPosition) {
+    public ResponseEntity<SaveStopResponseDto> saveCurrentPosition(SaveStopRequestDto saveStopRequestDto) {
         //userId를 사용하여 User  객체를 조회
-        User user = userRepository.findById(userId)
+        User user = userRepository.findById(saveStopRequestDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         //videoId를 사용하여 video 객체를 조회
-        Video video = videoRepository.findById(videoId)
+        Video video = videoRepository.findById(saveStopRequestDto.getVideoId())
                 .orElseThrow(() -> new RuntimeException("Video not found"));
         //videoHistory 조회 또는 새로운 videoHistory 생성
-        VideoHistory videoHistory = videoHistoryRepository.findByUserIdAndVideoId(userId, videoId)
-                .orElse(new VideoHistory(user, video, currentPosition));
+        VideoHistory videoHistory = videoHistoryRepository.findByUserIdAndVideoId(saveStopRequestDto.getUserId(), saveStopRequestDto.getVideoId())
+                .orElse(new VideoHistory(user, video, saveStopRequestDto.getCurrentPosition()));
         //현재 위치 설정
-        videoHistory.setCurrentPosition(currentPosition);
+        videoHistory.setCurrentPosition(saveStopRequestDto.getCurrentPosition());
         //videoHistory
         videoHistoryRepository.save(videoHistory);
+
+        SaveStopResponseDto saveStopResponseDto = new SaveStopResponseDto(
+                saveStopRequestDto.getVideoId(),
+                saveStopRequestDto.getUserId(),
+                videoHistory.getCurrentPosition());
+
+        return ResponseEntity.ok(saveStopResponseDto);
     }
+
+    //비디오 조회
+
+
 }
