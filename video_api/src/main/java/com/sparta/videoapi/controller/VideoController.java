@@ -2,8 +2,11 @@ package com.sparta.videoapi.controller;
 
 import com.sparta.videoapi.dto.video.*;
 import com.sparta.videoapi.service.VideoService;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -30,4 +33,16 @@ public class VideoController {
         return videoService.saveCurrentPosition(saveStopRequestDto);
     }
 
+    //비디오 조회
+    @GetMapping("/{videoId}/view")
+    public ResponseEntity<List<ViewResponseDto>> viewVideos() {
+        return videoService.viewVideos();
+    }
+
+    //비디오 삭제
+    @DeleteMapping("/{videoId}")
+    public ResponseEntity<Void> delete(@PathVariable Long videoId) {
+        videoService.delete(videoId);
+        return ResponseEntity.noContent().build();
+    }
 }

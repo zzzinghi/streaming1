@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -111,6 +113,19 @@ public class VideoService {
     }
 
     //비디오 조회
+    public ResponseEntity<List<ViewResponseDto>> viewVideos() {
+        List<Video> videos = videoRepository.findAll();
+        List<ViewResponseDto> viewResponseDto = videos.stream()
+                .map(video -> new ViewResponseDto(video))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(viewResponseDto);
+    }
 
+    //비디오 삭제
+    public void delete(Long videoId) {
+        Video video = videoRepository.findById(videoId)
+                        .orElseThrow(() -> new RuntimeException("Video not found"));
+        videoRepository.delete(video);
 
+    }
 }

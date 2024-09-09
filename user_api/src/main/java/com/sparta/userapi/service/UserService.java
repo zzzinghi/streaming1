@@ -25,7 +25,7 @@ public class UserService {
     private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
 
     public void signup(SignupRequestDto requestDto) {
-        String username = requestDto.getUsername();
+        String username = requestDto.getUser();
         String password = passwordEncoder.encode(requestDto.getPassword());
 
         // 회원 중복 확인

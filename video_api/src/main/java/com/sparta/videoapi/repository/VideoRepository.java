@@ -11,4 +11,5 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
     //service는 비즈니스 로직을 담고 있음,
     //이 로직을 처리하기 위해 필요한 데이터를 repository에서 불러오거나 저장함
 
+
 }
