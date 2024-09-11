@@ -1,0 +1,23 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST http://127.0.0.1:6072/addAd
+Content-Type: application/json
+
+{
+  "adName" : "광고",
+  "playPosition": 9
+}
+
+###
+POST http://127.0.0.1:6072/videos/register
+Content-Type: application/json
+Authorization: Bearer 7Iqk7YyM66W07YOA7L2U65Sp7YG065+9U3ByaW5n6rCV7J2Y7Yqc7YSw7LWc7JuQ67mI7J6F64uI64ukLg==
+
+{
+  "title" : "비디오 제목",
+  "userId" : 1,
+  "duration": 300
+}

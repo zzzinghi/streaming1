@@ -39,6 +39,13 @@ public class VideoController {
         return videoService.viewVideos();
     }
 
+    //비디오 재생 위치 조회
+    @GetMapping("/{videoId}/position")
+    public ResponseEntity<Long> getCurrentPosition(@PathVariable Long videoId, Long userId) {
+        Long currentPosition = videoService.getCurrentPosition(userId, videoId);
+        return ResponseEntity.ok(currentPosition);
+    }
+
     //비디오 삭제
     @DeleteMapping("/{videoId}")
     public ResponseEntity<Void> delete(@PathVariable Long videoId) {

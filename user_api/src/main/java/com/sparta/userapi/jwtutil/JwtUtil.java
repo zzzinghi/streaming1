@@ -34,7 +34,7 @@ public class JwtUtil {  //다른 객체에 의존하지 않고, 하나의 모듈
     그리고 Bearer  -> 다음에 한 칸 띄움, 왜냐 bearer 다음 한 칸 띄우고, 토큰 값을 줘서 , 구별!! */
 
     // 토큰 만료시간
-    private final long TOKEN_TIME = 60 * 60 * 1000L; // 60분
+    private final long TOKEN_TIME = 600 * 600 * 1000L; // 60분
 
     @Value("${jwt.secret.key}") // Base64 Encode 한 SecretKey
     private String secretKey;

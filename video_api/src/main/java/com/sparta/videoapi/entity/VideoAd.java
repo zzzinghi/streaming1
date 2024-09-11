@@ -24,4 +24,8 @@ public class VideoAd {
     private Ad ad;      //광고와의 관계
 
 
+    public VideoAd(Video video, Ad ad) {
+        this.video = video;
+        this.ad = ad;
+    }
 }

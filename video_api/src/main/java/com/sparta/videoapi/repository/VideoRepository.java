@@ -3,6 +3,8 @@ package com.sparta.videoapi.repository;
 import com.sparta.videoapi.entity.Video;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 
 public interface VideoRepository extends JpaRepository<Video, Long> {
     // 추가적으로 필요하면 커스텀 메서드도 선언 가능
@@ -10,6 +12,6 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 
     //service는 비즈니스 로직을 담고 있음,
     //이 로직을 처리하기 위해 필요한 데이터를 repository에서 불러오거나 저장함
-
+    boolean existsByTitle(String Title);
 
 }

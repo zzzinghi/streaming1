@@ -28,7 +28,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUser();
+        return user.getUsername();
     }
 
     @Override   //접근 불가 페이지 만들때?!

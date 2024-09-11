@@ -20,11 +20,17 @@ public class Ad {
 
     private int adPlayCount = 0;    //광고 재생 횟수
 
-    private int playPosition;
+    private int playPosition;   //비디오 내에서 광고가 언제 재생될지를 결정
 
     // 광고 재생 횟수 증가 메서드
     public void incrementPlayCount() {
         this.adPlayCount += 1;
+    }
+
+    //생성자 정의
+    public Ad(String adName, int playPosition) {
+        this.adName = adName;
+        this.playPosition = playPosition;
     }
 }
 
