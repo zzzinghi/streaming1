@@ -9,14 +9,22 @@ Java 21 버전
 프레임워크 : SpringBoot 3.3.2
 
 # 🛠 기술 스택
-- Java
+- Java : 안정성과 성능을 갖춘 백엔드 언어로, 많은 커뮤니티와 라이브러리가 존재하여 빠른 개발이 가능합니다.
 - MSA
-- Spring Boot
-- Spring Security
-- JPA / JWT
-- MySql
-- Docker / Docker Compose
+- Spring Boot : 빠른 개발을 지원합니다.
+- Spring Security : 인증과 권한 관리를 효과적으로 처리하기 위해 사용합니다.
+- JPA / JWT : 데이터베이스 연동 및 인증을 위한 JWT 토큰 관리를 위해 JPA와 JWT를 도입했습니다.
+- MySql : 안정적이고 관계형 데이터베이스로서의 성능을 고려하여 선택했습니다.
+- Docker / Docker Compose : 개발 환경의 일관성 유지와 배포의 편리함을 위해 도입했습니다.
 - HTTP Request / Response
+
+🛠 인프라 아키텍처
+
+- **MSA(Microservice Architecture)**: 독립된 서비스로 각 기능을 분리하여 확장성과 유지보수성을 높였습니다.
+- **Docker**: 개발 환경의 일관성을 유지하고, 배포를 쉽게 하기 위해 컨테이너 기반으로 서비스를 배포하였습니다.
+- **MySQL**: 데이터를 안정적으로 저장하고 관리하기 위한 RDBMS입니다.
+- **JWT**: 인증과 권한 관리를 위한 토큰 기반의 인증 시스템을 도입했습니다.
+
 
 # 주요 기능
 
@@ -36,3 +44,5 @@ Java 21 버전
 
 광고 시청
 - 등록된 영상에는 각각 1개 이상의 광고영상을 등록 할 수 있다.
+
+🛠 트러블슈팅
